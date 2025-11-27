@@ -289,7 +289,7 @@ packages:
 - pypi: .
   name: ssh-colors
   version: 0.1.0
-  sha256: 52c10c3245bf490043dbdb6221574f899d85fb844f55ef01713b1fcbff35cf4d
+  sha256: b659111dd38d9f9241fd4cd7db2f6a06b90da5c9b0353d1a78100c230f5ddeb4
   requires_python: '>=3.13'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tk-8.6.13-h892fb3f_3.conda

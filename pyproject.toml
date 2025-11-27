@@ -23,5 +23,5 @@ ssh_colors = { path = ".", editable = true }
 [tool.pixi.tasks]
 build-binary = "pyinstaller --onefile --name sync-ssh-profiles sync-ssh-profiles.py"
 build-extension = { cmd = "npm install && npm run compile && npx vsce package", cwd = "vscode-extension" }
-gh-build = "gh workflow run release.yml -f version=$(git describe --tags --match '*-dev' --abbrev=0 | sed 's/^v//')"
-gh-logs = "gh run view --log"
+gh-build = "./scripts/gh-build.sh"
+gh-logs = "./scripts/gh-logs.sh"
