@@ -1,0 +1,16 @@
+# Node
+node_modules/
+*.vsix
+
+# TypeScript build output
+vscode-extension/out/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# VS Code workspace files (generated)
+.ssh/workspaces/

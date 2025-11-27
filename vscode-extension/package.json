@@ -1,0 +1,38 @@
+{
+  "name": "ssh-host-colors",
+  "displayName": "SSH Host Colors",
+  "description": "Automatically apply window colors based on SSH host from ~/.ssh/config",
+  "version": "0.0.3",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "extensionKind": ["ui"],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ssh-host-colors.refresh",
+        "title": "SSH Host Colors: Refresh from SSH Config"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.74.0",
+    "@vscode/vsce": "^2.22.0",
+    "typescript": "^5.0.0"
+  }
+}
