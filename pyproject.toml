@@ -1,0 +1,25 @@
+[project]
+authors = [{name = "Emma Powers", email = "emma@emmaponders.com"}]
+dependencies = []
+name = "ssh-colors"
+requires-python = ">= 3.13"
+version = "0.1.0"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[tool.pixi.dependencies]
+python = "3.13.*"
+pyinstaller = "*"
+
+[tool.pixi.pypi-dependencies]
+ssh_colors = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+build-binary = "pyinstaller --onefile --name sync-ssh-profiles sync-ssh-profiles.py"
+build-extension = { cmd = "npm install && npm run compile && npx vsce package", cwd = "vscode-extension" }

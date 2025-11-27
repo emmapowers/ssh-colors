@@ -69,6 +69,16 @@ code --install-extension ssh-host-colors-0.0.1.vsix
 
 Open the `vscode-extension` folder in VS Code and press F5 to launch the Extension Development Host.
 
+## Development with Pixi
+
+This project uses [pixi](https://pixi.sh) for Python dependency management.
+
+```bash
+pixi install              # Install dependencies
+pixi run build-binary     # Build standalone Python binary
+pixi run build-extension  # Build and package VS Code extension
+```
+
 ## Color Ideas
 
 | Environment | Hex | Description |

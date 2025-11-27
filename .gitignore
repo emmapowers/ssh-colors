@@ -14,3 +14,12 @@ __pycache__/
 
 # VS Code workspace files (generated)
 .ssh/workspaces/
+
+# pixi environments
+.pixi
+*.egg-info
+
+# PyInstaller
+build/
+dist/
+*.spec

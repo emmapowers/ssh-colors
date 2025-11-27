@@ -1,0 +1,50 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Install pixi
+        uses: prefix-dev/setup-pixi@v0.8.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build Python binary
+        run: pixi run build-binary
+
+      - name: Rename binary with version
+        run: mv dist/sync-ssh-profiles dist/sync-ssh-profiles-${{ steps.version.outputs.VERSION }}
+
+      - name: Build VS Code extension
+        working-directory: vscode-extension
+        run: |
+          npm version ${{ steps.version.outputs.VERSION }} --no-git-tag-version
+          npm install
+          npm run compile
+          npx vsce package -o ssh-host-colors-${{ steps.version.outputs.VERSION }}.vsix
+
+      - name: Create Draft Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.version.outputs.VERSION }}
+          draft: true
+          files: |
+            dist/sync-ssh-profiles-${{ steps.version.outputs.VERSION }}
+            vscode-extension/ssh-host-colors-${{ steps.version.outputs.VERSION }}.vsix
